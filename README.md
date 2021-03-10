@@ -37,7 +37,9 @@ To address the previously outlined analytical goals, sample queries are provided
 
 For example, to find out how many songs of a certain artist were listened to in a given billing cycle (e.g. a month) by Sparkify's users, the following query can be used:
 ```sql
-SELECT artists.name as "Artist Name", artists.artist_id as "Artist ID", COUNT(artists.artist_id) as "Amount of songs" 
+SELECT artists.name as "Artist Name", 
+       artists.artist_id as "Artist ID", 
+       COUNT(artists.artist_id) as "Amount of songs" 
 FROM songplays 
 JOIN artists ON (songplays.artist_id = artists.artist_id) 
 JOIN time ON (songplays.start_time = time.start_time) 
@@ -67,7 +69,7 @@ AND AGE(songplays.start_time) < '10 days'
 GROUP BY users.user_id, songs.title;
 ```
 
-# Summary
+# :thought_balloon: Summary
 All in all, the developed database schema is effective and efficient in helping Sparkify's data scientists to retrieve the data they need for their analyses.
 
 I had a lot of fun doing the project and am looking forward to the next project in the nanodegree!
