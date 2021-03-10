@@ -8,13 +8,31 @@ from sql_queries import *
 import numpy as np
 from psycopg2.extensions import register_adapter, AsIs
 
+
 def addapt_numpy_float64(numpy_float64):
+    '''
+    Allows to use np floats with psycopg2
+    '''
     return AsIs(numpy_float64)
+
+
 def addapt_numpy_int64(numpy_int64):
+    '''
+    Allows to use np int64s with psycopg2
+    '''
     return AsIs(numpy_int64)
 
 
 def process_song_file(cur, filepath):
+    '''
+    Processes JSON song files from the data folder
+    and stores data in the songs and artists tables.
+
+    Parameters:
+       cur (object): PostgreSQL database cursor
+       filepath (str): Path to the song file
+       
+    '''
     # open song file
     df = pd.read_json(filepath, lines=True)
     df = df.replace({np.nan: None})
@@ -32,6 +50,15 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    '''
+    Processes JSON log files from the data folder
+    and stores data in the time, users and songplays tables.
+
+    Parameters:
+       cur (object): PostgreSQL database cursor
+       filepath (str): Path to the log file
+       
+    '''
     # open log file
     df = pd.read_json(filepath, lines=True)
     df = df.replace({np.nan: None})
@@ -82,6 +109,18 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    '''
+    Processes data files from a certain directory
+    using a user-specified function.
+
+    Parameters:
+       cur (object): PostgreSQL database cursor
+       conn (object): PostgreSQL database connection
+       filepath (str): Directory of data files
+       func (object): Function that is used to process
+                      the files from the provided folder
+       
+    '''
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
