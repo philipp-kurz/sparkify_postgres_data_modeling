@@ -4,7 +4,9 @@ import psycopg2
 import pandas as pd
 from sql_queries import *
 
+####################################################
 # Needed so that np.int64 can be read by psycopg2
+# per: https://stackoverflow.com/a/56390591
 import numpy as np
 from psycopg2.extensions import register_adapter, AsIs
 
@@ -22,6 +24,7 @@ def addapt_numpy_int64(numpy_int64):
     '''
     return AsIs(numpy_int64)
 
+####################################################
 
 def process_song_file(cur, filepath):
     '''
