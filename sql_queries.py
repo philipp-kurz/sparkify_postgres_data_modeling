@@ -10,8 +10,8 @@ time_table_drop = "DROP TABLE IF EXISTS time;"
 
 songplay_table_create = (""" CREATE TABLE IF NOT EXISTS songplays (
                                 songplay_id SERIAL PRIMARY KEY,
-                                start_time TIMESTAMP,
-                                user_id INT,
+                                start_time TIMESTAMP NOT NULL,
+                                user_id INT NOT NULL,
                                 level TEXT,
                                 song_id TEXT,
                                 artist_id TEXT,
@@ -70,12 +70,13 @@ songplay_table_insert = (""" INSERT INTO songplays
 user_table_insert = (""" INSERT INTO users
                          (user_id, first_name, last_name, gender, level)
                          VALUES (%s, %s, %s, %s, %s)
-                         ON CONFLICT (user_id) DO NOTHING;
+                         ON CONFLICT (user_id) DO UPDATE SET level=excluded.level;
                         """)
 
 song_table_insert = (""" INSERT INTO songs
                          (song_id, title, artist_id, year, duration)
-                         VALUES (%s, %s, %s, %s, %s);
+                         VALUES (%s, %s, %s, %s, %s)
+                         ON CONFLICT (song_id) DO NOTHING;
                         """)
 
 artist_table_insert = (""" INSERT INTO artists
