@@ -1,3 +1,6 @@
+
+![image](https://user-images.githubusercontent.com/54779918/112982981-6789c400-915d-11eb-9728-c7280d419640.png)
+
 # :eye_speech_bubble: Project overview
 
 Because the executive suite of the imaginary music streaming startup Sparkify kept hearing that "data is the oil of the 21st century", they decided to collect any data they could get their hands on about the songs they offer and their users' listening activity.
@@ -34,6 +37,7 @@ Lastly, it is validated whether the data was inserted correctly using the [test 
 # :question: Sample Queries
 
 To address the previously outlined analytical goals, sample queries are provided in the [sample query Jupyter Notebook](analytical_sample_queries.ipynb).
+
 
 For example, to find out how many songs of a certain artist were listened to in a given billing cycle (e.g. a month) by Sparkify's users, the following query can be used:
 ```sql
